@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1 style="text-decoration:underline;text-align: center;">Welcome To Library</h1>
+<br><br>
+<form method="post" action="/addtask/">
+
+{%csrf_token %}
+    <label>Book Name</label>
+    <input type = "text" name="task">
+    <input type="submit" value="Add" class="btn btn-success" name="">
+</form>
+<br><br><br>
+<h1 style="text-decoration:underline;">List Of Books Are Added From Library </h1>
+<table>
+    <tr>
+        <th>Book Details</th>
+    </tr>
+    
+{% for mytodo in mytodos %}
+<tr>
+<td>{{ mytodo.task}} <a href="/deletetask/{{mytodo.id}}/" class="btn btn-danger">Delete</a> <a href="/edittask/{{mytodo.id}}/"class="btn btn-warning">Edit</a></td>
+</tr>
+{% endfor %}
+</table>
+{% endblock %}
